@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
+import Chatbot from './components/chatbot';
 import './css/card.scss';
 import './css/globals.scss';
 const inter = Inter({ subsets: ['latin'] });
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <Chatbot />
       </body>
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
     </html>

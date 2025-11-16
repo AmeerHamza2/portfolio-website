@@ -1,6 +1,6 @@
 // @flow strict
 
-import { skillsData } from "@/utils/data/skills";
+import { categorizedSkills } from "@/utils/data/skills";
 import { skillsImage } from "@/utils/skill-image";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -27,50 +27,57 @@ function Skills() {
       </div>
 
       <div className="w-full my-12">
-        <Marquee
-          gradient={false}
-          speed={80}
-          pauseOnHover={true}
-          pauseOnClick={true}
-          delay={0}
-          play={true}
-          direction="left"
-        >
-          {skillsData.map((skill, id) => (
-            <div className="w-36 min-w-fit h-fit flex flex-col items-center justify-center transition-all duration-500 m-3 sm:m-5 rounded-lg group relative hover:scale-[1.15] cursor-pointer"
-              key={id}>
-              <div className="h-full w-full rounded-lg border border-[#1f223c] bg-[#11152c] shadow-none shadow-gray-50 group-hover:border-violet-500 transition-all duration-500">
-                <div className="flex -translate-y-[1px] justify-center">
-                  <div className="w-3/4">
-                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+        {Object.keys(categorizedSkills).map((category, categoryIndex) => (
+          <div key={categoryIndex} className="mb-8">
+            <div className="flex items-center gap-3 mb-4 px-4">
+              <h3 className="text-[#16f2b3] text-lg font-semibold whitespace-nowrap">{category}:</h3>
+            </div>
+            <Marquee
+              gradient={false}
+              speed={80}
+              pauseOnHover={true}
+              pauseOnClick={true}
+              delay={0}
+              play={true}
+              direction={categoryIndex % 2 === 0 ? "left" : "right"}
+            >
+              {categorizedSkills[category].map((skill, id) => (
+                <div className="w-36 min-w-fit h-fit flex flex-col items-center justify-center transition-all duration-500 m-3 sm:m-5 rounded-lg group relative hover:scale-[1.15] cursor-pointer"
+                  key={id}>
+                  <div className="h-full w-full rounded-lg border border-[#1f223c] bg-[#11152c] shadow-none shadow-gray-50 group-hover:border-violet-500 transition-all duration-500">
+                    <div className="flex -translate-y-[1px] justify-center">
+                      <div className="w-3/4">
+                        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center gap-3 p-6">
+                      {skillsImage(skill)?.src ? (
+                        <div className="h-8 sm:h-10">
+                          <Image
+                            src={skillsImage(skill)?.src}
+                            alt={skill}
+                            width={40}
+                            height={40}
+                            className="h-full w-auto rounded-lg"
+                          />
+                        </div>
+                      ) : (
+                        <div className="h-8 sm:h-10 w-10 bg-gradient-to-r from-violet-500 to-purple-500 rounded-lg flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">
+                            {skill.charAt(0).toUpperCase()}
+                          </span>
+                        </div>
+                      )}
+                      <p className="text-white text-sm sm:text-lg">
+                        {skill}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-3 p-6">
-                  {skillsImage(skill)?.src ? (
-                    <div className="h-8 sm:h-10">
-                      <Image
-                        src={skillsImage(skill)?.src}
-                        alt={skill}
-                        width={40}
-                        height={40}
-                        className="h-full w-auto rounded-lg"
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-8 sm:h-10 w-10 bg-gradient-to-r from-violet-500 to-purple-500 rounded-lg flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">
-                        {skill.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
-                  )}
-                  <p className="text-white text-sm sm:text-lg">
-                    {skill}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Marquee>
+              ))}
+            </Marquee>
+          </div>
+        ))}
       </div>
     </div>
   );

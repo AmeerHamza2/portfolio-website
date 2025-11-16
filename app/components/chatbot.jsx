@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { BsChatDots, BsX, BsSend } from 'react-icons/bs';
+import { BsChatDots, BsX, BsSend, BsInfoCircle } from 'react-icons/bs';
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -14,6 +15,24 @@ export default function Chatbot() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+
+  // Hide tooltip after 5 seconds or when user interacts
+  useEffect(() => {
+    if (showTooltip) {
+      const timer = setTimeout(() => {
+        setShowTooltip(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showTooltip]);
+
+  // Hide tooltip when chat is opened
+  useEffect(() => {
+    if (isOpen) {
+      setShowTooltip(false);
+    }
+  }, [isOpen]);
 
   // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = () => {
@@ -83,15 +102,36 @@ export default function Chatbot() {
 
   return (
     <>
-      {/* Floating Chat Button */}
+      {/* Floating Chat Button with Tooltip */}
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 bg-gradient-to-r from-pink-500 to-violet-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50"
-          aria-label="Open chat"
-        >
-          <BsChatDots className="w-6 h-6" />
-        </button>
+        <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
+          {showTooltip && (
+            <div className="relative bg-[#0d1224] border border-[#353951] text-white text-sm px-4 py-3 rounded-lg shadow-xl max-w-xs">
+              <div className="flex items-start gap-2">
+                <BsInfoCircle className="text-pink-400 mt-0.5 flex-shrink-0" />
+                <p className="leading-snug">
+                  Meet Ameer's AI assistant — ask it about his skills, projects, or availability anytime.
+                </p>
+                <button
+                  onClick={() => setShowTooltip(false)}
+                  aria-label="Dismiss chat info"
+                  className="ml-2 text-gray-400 hover:text-white transition-colors"
+                >
+                  <BsX className="w-4 h-4" />
+                </button>
+              </div>
+              <span className="absolute -bottom-2 right-6 w-3 h-3 bg-[#0d1224] border-b border-r border-[#353951] rotate-45"></span>
+            </div>
+          )}
+
+          <button
+            onClick={() => setIsOpen(true)}
+            className="bg-gradient-to-r from-pink-500 to-violet-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
+            aria-label="Open chat"
+          >
+            <BsChatDots className="w-6 h-6" />
+          </button>
+        </div>
       )}
 
       {/* Chat Window */}

@@ -1,8 +1,8 @@
 export const personalData = {
   name: "Ameer Hamza",
-  profile: '/mypic4.jpg',
-  designation: "AI & No-Code Apps Developer",
-  description: "Senior Software Engineer with 5+ years of experience in full-stack development, specializing in the MERN stack, TypeScript, and NestJS. Expert in AI-driven platforms and no-code development using Bubble, FlutterFlow, Adalo, WeWeb, Lovable, Xano, and Zapier. Proven track record of building scalable applications with AI integrations, workflow automation, and modern web technologies. Passionate about transforming ideas into production-ready apps using cutting-edge no-code platforms and AI-powered solutions.",
+  profile: '/Generated Image November 15, 2025 - 11_24PM.png',
+  designation: "Senior Software Engineer",
+  description: "Senior Software Engineer with 5+ years of experience in full-stack development, specializing in the MERN stack, TypeScript, and NestJS. Proven track record of designing and developing scalable backend services using NestJS and Express, and building responsive frontends using React and Next.js. Comfortable working across the stack, integrating RESTful APIs, managing databases, and implementing modern architectures including microservices. Quick learner with growing exposure to Python for backend automation and AI-driven applications. Passionate about solving real-world problems through clean code, performance optimization, and modern web technologies.",
   email: 'ameerhamza1710@gmail.com',
   phone: '+92 302 4433927',
   address: 'Lahore, Pakistan',

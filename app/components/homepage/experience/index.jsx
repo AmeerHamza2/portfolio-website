@@ -65,6 +65,11 @@ function Experience() {
                           <p className="text-sm sm:text-base">
                             {experience.company}
                           </p>
+                          {experience.location && (
+                            <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                              {experience.location}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>

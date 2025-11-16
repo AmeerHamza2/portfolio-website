@@ -10,8 +10,14 @@ import './css/globals.scss';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Portfolio of Ameer Hamza - Software Developer',
-  description: 'This is the portfolio of Ameer Hamza. I am a full stack MERN developer and a self taught developer. I love to learn new things and I am always open to collaborating with others. I am a quick learner and I am always looking for new challenges.',
+  title: 'Ameer Hamza - Senior Software Engineer | Full-Stack Developer',
+  description: 'Senior Software Engineer with 5+ years of experience specializing in MERN stack, TypeScript, NestJS, and AI-driven applications. Proven track record of building scalable microservices, real-time dashboards, and full-stack solutions. Expert in React, Next.js, Node.js, Python, and modern web technologies.',
+  keywords: 'Senior Software Engineer, Full-Stack Developer, MERN Stack, TypeScript, NestJS, React, Next.js, Node.js, Python, Microservices, AI-driven applications, Software Developer Portfolio',
+  openGraph: {
+    title: 'Ameer Hamza - Senior Software Engineer',
+    description: '5+ years of experience building scalable full-stack applications with MERN stack, TypeScript, and NestJS',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {

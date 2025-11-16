@@ -1,6 +1,8 @@
 // @flow strict
 
 import * as React from 'react';
+import Link from 'next/link';
+import { BsGithub, BsBoxArrowUpRight } from 'react-icons/bs';
 
 function ProjectCard({ project }) {
 
@@ -61,7 +63,30 @@ function ProjectCard({ project }) {
             <span className="text-cyan-400">{' ' + project.description}</span>
             <span className="text-gray-400">,</span>
           </div>
-          <div><img src="" alt="" /></div>
+          <div className="ml-4 lg:ml-8 mr-2 mt-4 flex gap-3 flex-wrap">
+            {project.demo && (
+              <Link
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-pink-500 to-violet-600 rounded text-white text-xs hover:scale-105 transition-all duration-200"
+              >
+                <BsBoxArrowUpRight size={14} />
+                <span>Live Demo</span>
+              </Link>
+            )}
+            {project.code && (
+              <Link
+                href={project.code}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-1.5 bg-[#1a1443] border border-violet-500 rounded text-white text-xs hover:scale-105 transition-all duration-200"
+              >
+                <BsGithub size={14} />
+                <span>View Code</span>
+              </Link>
+            )}
+          </div>
         </code>
       </div>
     </div>
